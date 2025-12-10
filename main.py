@@ -1,9 +1,14 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from openai import OpenAI
+import os
 
-# OpenAI 클라이언트 (OPENAI_API_KEY는 나중에 Railway에서 환경변수로 넣을 것)
-client = OpenAI()
+# 환경변수에서 OPENAI_API_KEY를 읽어서 명시적으로 넘겨준다
+api_key = os.environ.get("OPENAI_API_KEY")
+
+client = OpenAI(
+    api_key=api_key
+)
 
 app = FastAPI()
 
